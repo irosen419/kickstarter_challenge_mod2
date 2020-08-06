@@ -1,0 +1,14 @@
+<h1>Update Project Form</h1>
+
+<%= form_for @project do |f|%>
+    <%= f.label "Project Name:"%>
+    <%= f.text_field :name%>
+
+    <%= f.label :goal%>
+    <%= f.number_field :goal%>
+
+    <%= f.label "How much would you like to donate?"%>
+    <%= f.number_field :total_donated, value: 0 %>
+
+    <%= f.submit %>
+<% end %>
