@@ -1,10 +1,12 @@
 class ProjectsController < ApplicationController
+    before_action :find_project, only: [:show, :edit, :update, :delete]
+    
     def index
         @projects = Project.all
     end
 
     def show
-        @project = Project.find(params[:id])
+        
     end
 
     def new
@@ -18,11 +20,11 @@ class ProjectsController < ApplicationController
     end
 
     def edit
-        @project = Project.find(params[:id])
+        
     end
 
     def update
-        @project = Project.find(params[:id])
+        
         amount = @project.donate(params[:project][:total_donated])
         @project.update(name: params[:project][:name], goal: params[:project][:goal], total_donated: amount)
         
@@ -30,7 +32,7 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        @project = Project.find(params[:id])
+        
         @project.destroy
         redirect_to projects_path(@projects)
     end
@@ -39,5 +41,9 @@ class ProjectsController < ApplicationController
 
     def project_params(*args)
         params.require(:project).permit(*args)
+    end
+
+    def find_project
+        @project = Project.find(params[:id])
     end
 end
