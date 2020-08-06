@@ -2,3 +2,11 @@
 
 <h3>Goal:</h3> <p><%= @project.goal %></p>
 <h3>Total Donated:</h3> <p><%= @project.total_donated %></p>
+<h3>Goal Reached?</h3>
+<% if @project.goal_met? %>
+    <%= "YES" %>
+<% else %>
+    <%= "NO" %>
+<% end %>
+
+<h4><%= link_to "Update Project", edit_project_path(@project) %> </h4>
